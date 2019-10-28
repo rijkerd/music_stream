@@ -7,6 +7,7 @@ https://docs.djangoproject.com/en/dev/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/dev/ref/settings/
 """
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / "directory"
@@ -33,7 +34,6 @@ TEMPLATES = [
     },
 ]
 
-import environ
 
 env = environ.Env()
 
@@ -65,6 +65,8 @@ INSTALLED_APPS = [
     'rest_auth.registration',
     'api',
     'users',
+    'music',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -133,5 +135,27 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ),
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
+
+# AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'django-music-test-bucket'
+AWS_ACCESS_KEY_ID = 'AKIAX3HOIVQWOMQ7MVWW'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_DEFAULT_ACL = 'public-read'
+AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# s3 static settings
+# AWS_LOCATION = 'static'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+# DEFAULT_FILE_STORAGE = "django_s3_storage.storage.S3Storage"
+
+# AWS_S3_BUCKET_NAME = "django-music-test-bucket"
+
+# AWS_REGION = "us-west-2"
