@@ -4,6 +4,9 @@ from django.db import models
 
 class CustomUser(AbstractUser):
     name = models.CharField(blank=True, max_length=255)
+    email = models.EmailField(unique=True, blank=False, error_messages={
+        'unique': "A user with that email already exists"
+    })
 
     def __str__(self):
         return self.email
