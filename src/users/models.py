@@ -8,5 +8,8 @@ class CustomUser(AbstractUser):
         'unique': "A user with that email already exists"
     })
 
+    class Meta:
+        ordering = ['last_login']
+
     def __str__(self):
         return self.email

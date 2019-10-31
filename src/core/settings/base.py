@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'api',
     'users',
     'music',
+    'artist',
     'storages',
 ]
 
