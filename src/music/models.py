@@ -8,9 +8,7 @@ from artist.models import Artist
 
 
 class Genre(models.Model):
-    id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, auto_created=True)
-    genreName = models.CharField(max_length=200, unique=True, blank=False)
+    genre_name = models.CharField(max_length=200, unique=True, blank=False)
     genre_thumbnail = models.ImageField(upload_to='genre')
     created_on = models.DateTimeField(auto_now_add=True)
 
@@ -18,43 +16,44 @@ class Genre(models.Model):
         ordering = ['created_on']
 
     def __str__(self):
-        return self.genreName
+        return self.genre_name
 
 
 class Album(models.Model):
-    id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, auto_created=True)
-    albumName = models.CharField(max_length=200, unique=True, blank=False)
+    album_name = models.CharField(max_length=200, unique=True, blank=False)
     album_thumbnail = models.ImageField(upload_to='album')
     created_on = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ['created_on']
+    # class Meta:
+    #     unique_together = ['album', 'order']
+    #     ordering = ['created_on']
 
     def __str__(self):
-        return self.albumName
+        return self.album_name
 
 
 class Song(models.Model):
-    audio_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, auto_created=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    id = models.IntegerField(
+        primary_key=True, auto_created=True, blank=False, unique=True,)
+    user = models.ForeignKey(
+        CustomUser, related_name='uploader_name', on_delete=models.CASCADE)
     artist = models.ForeignKey(
-        Artist, to_field='name', on_delete=models.CASCADE)
+        Artist, related_name='song_creator', on_delete=models.CASCADE)
     title = models.CharField(
         max_length=200, verbose_name="Song name", blank=False, default='Title')
     description = models.CharField(max_length=200,
                                    default="", blank=False)
-    genre = models.OneToOneField(
-        Genre, to_field='genreName', on_delete=models.CASCADE)
-    album = models.OneToOneField(
-        Album, to_field='albumName', on_delete=models.CASCADE)
+    genre = models.ForeignKey(
+        Genre, related_name='song_genre', on_delete=models.CASCADE)
+    album = models.ForeignKey(
+        Album, related_name='songs', on_delete=models.CASCADE)
     song_thumbnail = models.ImageField(upload_to='songsImages')
     song_url = models.FileField(upload_to='music')
     created_on = models.DateTimeField(
         verbose_name='Created on', auto_now_add=True)
 
     class Meta:
+        unique_together = ['album', 'created_on']
         ordering = ['created_on']
 
     def __str__(self):
