@@ -16,4 +16,5 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'src.core.settings')
 
 application = get_wsgi_application()
 application = WhiteNoise(application, root='src/static')
+application.add_files('./media/', prefix='files')
 # application = DjangoWhiteNoise(application)
