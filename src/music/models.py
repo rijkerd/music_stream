@@ -1,4 +1,4 @@
-import uuid
+# import uuid
 from django.db import models
 from django.db import models
 from django.utils import timezone
@@ -33,9 +33,9 @@ class Album(models.Model):
 
 
 class Song(models.Model):
-    id = models.IntegerField(
+    song_id = models.IntegerField(
         primary_key=True, auto_created=True, blank=False, unique=True,)
-    user = models.ForeignKey(
+    owner = models.ForeignKey(
         CustomUser, related_name='uploader_name', on_delete=models.CASCADE)
     artist = models.ForeignKey(
         Artist, related_name='song_creator', on_delete=models.CASCADE)

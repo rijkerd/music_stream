@@ -1,10 +1,10 @@
-import uuid
+# import uuid
 from django.db import models
 
 
 class Artist(models.Model):
-    artist_id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4, auto_created=True)
+    id = models.AutoField(
+        primary_key=True, auto_created=True, blank=False, unique=True)
     name = models.CharField(max_length=200, blank=False, unique=True)
     biography = models.CharField(max_length=200, blank=False)
     photo_url = models.ImageField(upload_to='artist', blank=False)
