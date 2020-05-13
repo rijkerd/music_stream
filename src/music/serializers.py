@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from .models import Song, Album, Genre
-from users.models import CustomUser
-from artist.serializers import ArtistSerializers
+from src.music.models import Song, Album, Genre
+from src.users.models import CustomUser
+from src.artist.serializers import ArtistSerializers
 
 
 class GenreSerializer(serializers.ModelSerializer):

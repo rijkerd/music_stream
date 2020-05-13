@@ -3,8 +3,8 @@ from django.db import models
 from django.db import models
 from django.utils import timezone
 
-from users.models import CustomUser
-from artist.models import Artist
+from src.users.models import CustomUser
+from src.artist.models import Artist
 
 
 class Genre(models.Model):

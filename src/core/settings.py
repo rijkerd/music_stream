@@ -46,10 +46,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'rest_auth.registration',
-    'api',
-    'users',
-    'music',
-    'artist',
+    'src.users',
+    'src.api',
+    'src.music',
+    'src.artist',
     'storages',
 ]
 
@@ -105,7 +105,7 @@ TEMPLATES = [
     },
 ]
 
-ROOT_URLCONF = "core.urls"
+ROOT_URLCONF = "src.core.urls"
 
 WSGI_APPLICATION = "core.wsgi.application"
 
@@ -164,14 +164,14 @@ REST_FRAMEWORK = {
 }
 
 if DEBUG is False:
-    SESSION_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_SECONDS = 31536000
-    SECURE_REDIRECT_EXEMPT = []
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # SESSION_COOKIE_SECURE = True
+    # SECURE_BROWSER_XSS_FILTER = True
+    # SECURE_CONTENT_TYPE_NOSNIFF = True
+    # SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    # SECURE_HSTS_SECONDS = 31536000
+    # SECURE_REDIRECT_EXEMPT = []
+    # SECURE_SSL_REDIRECT = True
+    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
     DATABASES['default'] = dj_database_url.config(
         default=config('DATABASE_URL')
