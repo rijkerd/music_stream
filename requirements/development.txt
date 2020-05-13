@@ -1,5 +1,0 @@
--i https://pypi.python.org/simple
--r base.txt
-pylint = "*"
-django-debug-toolbar = "*"
-autopep8 = "*"
