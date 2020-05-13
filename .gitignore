@@ -60,3 +60,7 @@ Desktop.ini
 
 .vscode/
 
+media/
+
+.env
+
