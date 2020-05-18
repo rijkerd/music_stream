@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
-from core import settings
+from core import settings, views
 
 urlpatterns = [
+    path('', views.HomePage),
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
 ]

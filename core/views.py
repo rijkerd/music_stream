@@ -1,4 +1,6 @@
-from django.views import generic
+from django.shortcuts import redirect
+from django.http import request
 
-class HomePage(generic.TemplateView):
-    template_name = "home.html"
+
+def HomePage(request):
+    return redirect('/api/v1/users')
