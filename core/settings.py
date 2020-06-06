@@ -115,9 +115,9 @@ DATABASES = {
     # os.environ
     "default": {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
-        'USER': 'myuser',
-        'PASSWORD': 'mypass',
+        'NAME': 'music_stream',
+        'USER': 'music_user',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '',
     }

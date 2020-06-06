@@ -8,15 +8,21 @@ class GenreSerializer(serializers.ModelSerializer):
     pass
 
 
-class SongSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.ReadOnlyField(source='CustomUser.email')
-    album_name = serializers.HyperlinkedIdentityField(
-        view_name='album-detail', format='json')
+class SongSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field='name')
+    album = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field='name')
+    artist = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field='name')
+    owner = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field='username')
+    genre = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field='name')
 
     class Meta:
         model = Song
-        fields = ['user', 'title',
-                  'song_url', 'song_thumbnail', 'album_name', 'created_on']
+        fields = "__all__"
 
 
 class AlbumSerializer(serializers.HyperlinkedModelSerializer):
@@ -24,4 +30,4 @@ class AlbumSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Album
-        fields = ['id', 'album_name', 'album_thumbnail', 'songs', 'created_on']
+        fields = "__all__"
