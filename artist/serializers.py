@@ -1,8 +1,10 @@
+from track.serializers import TrackSerializer
 from rest_framework import serializers
 from artist.models import Artist
 
 
-class ArtistSerializers(serializers.ModelSerializer):
+class ArtistSerializer(serializers.ModelSerializer):
+    tracks = TrackSerializer(many=True, read_only=True)
 
     class Meta:
         model = Artist

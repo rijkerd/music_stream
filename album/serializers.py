@@ -1,9 +1,10 @@
 from rest_framework import serializers
+from track.serializers import TrackSerializer
 from .models import Album
 
 
 class AlbumSerializer(serializers.ModelSerializer):
-    # songs = SongSerializer(many=True, read_only=True)
+    tracks = TrackSerializer(many=True, read_only=True)
 
     class Meta:
         model = Album
