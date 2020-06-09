@@ -1,17 +1,17 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from .views import ArtistViewSet
+from .views import AlbumViewSet
 
-artist_list = ArtistViewSet.as_view({
+album_list = AlbumViewSet.as_view({
     'get': 'list',
     'post': 'create'
 })
 
-artist_detail = ArtistViewSet.as_view({
+album_detail = AlbumViewSet.as_view({
     'get': 'retrieve',
 })
 
 router = DefaultRouter()
-router.register(r'artists', ArtistViewSet, basename='artist')
+router.register(r'albums', AlbumViewSet, basename='album')
 
 urlpatterns = router.urls

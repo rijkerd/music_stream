@@ -1,22 +1,11 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.viewsets import ModelViewSet
 
 from .models import Track
 from .serializers import TrackSerializer
 
 
-class TrackList(ListAPIView):
-    """
-    Return a list of all tracks
-    """
-    queryset = Track.objects.all()
-    serializer_class = TrackSerializer
-
-
-class TrackDetail(RetrieveAPIView):
-    """
-    Return a details of a track based on the id
-    """
+class TrackViewSet(ModelViewSet):
     lookup_field = "id"
     queryset = Track.objects.all()
     serializer_class = TrackSerializer

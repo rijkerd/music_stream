@@ -1,17 +1,17 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
-from .views import ArtistViewSet
+from .views import GenreViewSet
 
-artist_list = ArtistViewSet.as_view({
+genre_list = GenreViewSet.as_view({
     'get': 'list',
     'post': 'create'
 })
 
-artist_detail = ArtistViewSet.as_view({
+genre_detail = GenreViewSet.as_view({
     'get': 'retrieve',
 })
 
 router = DefaultRouter()
-router.register(r'artists', ArtistViewSet, basename='artist')
+router.register(r'genres', GenreViewSet, basename='genre')
 
 urlpatterns = router.urls
