@@ -48,10 +48,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'users',
+    # 'music',
     'api',
-    'music',
-    'artist',
     'storages',
+    'track',
+    'genre',
+    'album',
+    'artist',
 ]
 
 MIDDLEWARE = [

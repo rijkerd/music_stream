@@ -1,6 +1,6 @@
-from track.serializers import TrackSerializer
 from rest_framework import serializers
-from artist.models import Artist
+from .models import Artist
+from track.serializers import TrackSerializer
 
 
 class ArtistSerializer(serializers.ModelSerializer):

@@ -13,6 +13,5 @@ urlpatterns = [
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('users/', include('users.urls')),
-    # path('', include('music.urls')),
     path('', include('artist.urls')),
 ]
