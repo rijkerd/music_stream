@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'rest_auth.registration',
     'users',
-    # 'music',
     'api',
     'storages',
     'track',
@@ -165,7 +164,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer'
+    ]
 }
 
 if DEBUG is False:
