@@ -16,16 +16,29 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
+from rest_framework.schemas import get_schema_view
+from django.views.generic.base import TemplateView
 from core import settings, views
 
 urlpatterns = [
     path('', views.HomePage),
     path('admin/', admin.site.urls),
     path('api/v1/', include('api.urls')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+    path('openapi', get_schema_view(
+        title="Musicstream",
+        description="Music stream openapi",
+        version="2.0.0"
+    ), name='music-stream-openapi-schema'),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'music-stream-openapi-schema'}
+    ), name='swagger-ui'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL,
                           document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)
+    # urlpatterns += static(settings.MEDIA_URL,
+    #                       document_root=settings.MEDIA_ROOT)
