@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Track
-from users.models import CustomUser
+from users.models import User
 
 
 class TrackSerializer(serializers.ModelSerializer):

@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from users.models import CustomUser
+from users.models import User
 from artist.models import Artist
 from genre.models import Genre
 from album.models import Album
@@ -11,7 +11,7 @@ class Track(models.Model):
     id = models.UUIDField(
         primary_key=True, default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(
-        CustomUser, related_name='tracks', on_delete=models.CASCADE)
+        User, related_name='tracks', on_delete=models.CASCADE)
     artist = models.ForeignKey(
         Artist, related_name='tracks', on_delete=models.CASCADE)
     title = models.CharField(
