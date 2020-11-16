@@ -42,11 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_auth',
     'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'rest_auth.registration',
     'users',
     'api',
     'storages',
@@ -54,6 +50,7 @@ INSTALLED_APPS = [
     'genre',
     'album',
     'artist',
+    'djoser'
 ]
 
 MIDDLEWARE = [
@@ -112,16 +109,32 @@ ROOT_URLCONF = "core.urls"
 
 WSGI_APPLICATION = "core.wsgi.application"
 
+AUTH_USER_MODEL = 'users.User'
+
+DJOSER = {
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    # 'USER_ID_FIELD': 'User._meta.id'
+    'SERIALIZERS': {
+        'user': 'users.serializers.UserSerializer',
+        'user_create': 'users.serializers.UserRegistrationSerializer',
+    },
+}
+
 DATABASES = {
     # Raises ImproperlyConfigured exception if DATABASE_URL not in
     # os.environ
-    "default": {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'music_stream',
-        'USER': 'music_user',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
+    # "default": {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'music_stream',
+    #     'USER': 'music_user',
+    #     'PASSWORD': 'password',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -151,12 +164,12 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SITE_ID = 1
 
-AUTH_USER_MODEL = 'users.CustomUser'
+# AUTH_USER_MODEL = 'users.CustomUser'
 
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
