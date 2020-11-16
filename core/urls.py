@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/v1/', include('api.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('openapi', get_schema_view(
+    path('openapi/', get_schema_view(
         title="Musicstream",
         description="Music stream openapi",
         version="2.0.0"

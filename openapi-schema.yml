@@ -1,0 +1,1981 @@
+openapi: 3.0.2
+swagger: "2.0.0"
+info:
+  title: ""
+  version: ""
+paths:
+  /api/v1/artists/:
+    get:
+      operationId: listArtists
+      description: ""
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        tracks:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                                readOnly: true
+                              user:
+                                type: string
+                                readOnly: true
+                              album:
+                                type: string
+                                readOnly: true
+                              artist:
+                                type: string
+                                readOnly: true
+                              owner:
+                                type: string
+                                readOnly: true
+                              genre:
+                                type: string
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 200
+                              description:
+                                type: string
+                                maxLength: 200
+                              thumbnail:
+                                type: string
+                                format: binary
+                              url:
+                                type: string
+                                format: binary
+                              created_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                                default:
+                                  !!python/object:rest_framework.fields.CreateOnlyDefault
+                                  default: !!python/name:django.utils.timezone.now &id002 ""
+                              updated_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                            required:
+                              - thumbnail
+                              - url
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 50
+                        biography:
+                          type: string
+                          maxLength: 200
+                        photo_url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - name
+                        - biography
+                        - photo_url
+          description: ""
+    post:
+      operationId: createArtist
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                biography:
+                  type: string
+                  maxLength: 200
+                photo_url:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - biography
+                - photo_url
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  biography:
+                    type: string
+                    maxLength: 200
+                  photo_url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - biography
+                  - photo_url
+          description: ""
+  /api/v1/artists/{id}/:
+    get:
+      operationId: retrieveArtist
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this artist.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  biography:
+                    type: string
+                    maxLength: 200
+                  photo_url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - biography
+                  - photo_url
+          description: ""
+    put:
+      operationId: updateArtist
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this artist.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                biography:
+                  type: string
+                  maxLength: 200
+                photo_url:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - biography
+                - photo_url
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  biography:
+                    type: string
+                    maxLength: 200
+                  photo_url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - biography
+                  - photo_url
+          description: ""
+    patch:
+      operationId: partial_updateArtist
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this artist.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                name:
+                  type: string
+                  maxLength: 50
+                biography:
+                  type: string
+                  maxLength: 200
+                photo_url:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 50
+                  biography:
+                    type: string
+                    maxLength: 200
+                  photo_url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - biography
+                  - photo_url
+          description: ""
+    delete:
+      operationId: destroyArtist
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this artist.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: ""
+  /api/v1/albums/:
+    get:
+      operationId: listAlbums
+      description: ""
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        tracks:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                                readOnly: true
+                              user:
+                                type: string
+                                readOnly: true
+                              album:
+                                type: string
+                                readOnly: true
+                              artist:
+                                type: string
+                                readOnly: true
+                              owner:
+                                type: string
+                                readOnly: true
+                              genre:
+                                type: string
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 200
+                              description:
+                                type: string
+                                maxLength: 200
+                              thumbnail:
+                                type: string
+                                format: binary
+                              url:
+                                type: string
+                                format: binary
+                              created_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                                default:
+                                  !!python/object:rest_framework.fields.CreateOnlyDefault
+                                  default: *id002
+                              updated_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                            required:
+                              - thumbnail
+                              - url
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - name
+                        - thumbnail
+          description: ""
+    post:
+      operationId: createAlbum
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - thumbnail
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+  /api/v1/albums/{id}/:
+    get:
+      operationId: retrieveAlbum
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this album.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    put:
+      operationId: updateAlbum
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this album.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - thumbnail
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    patch:
+      operationId: partial_updateAlbum
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this album.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    delete:
+      operationId: destroyAlbum
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this album.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: ""
+  /api/v1/genres/:
+    get:
+      operationId: listGenres
+      description: ""
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        tracks:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                                readOnly: true
+                              user:
+                                type: string
+                                readOnly: true
+                              album:
+                                type: string
+                                readOnly: true
+                              artist:
+                                type: string
+                                readOnly: true
+                              owner:
+                                type: string
+                                readOnly: true
+                              genre:
+                                type: string
+                                readOnly: true
+                              title:
+                                type: string
+                                maxLength: 200
+                              description:
+                                type: string
+                                maxLength: 200
+                              thumbnail:
+                                type: string
+                                format: binary
+                              url:
+                                type: string
+                                format: binary
+                              created_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                                default:
+                                  !!python/object:rest_framework.fields.CreateOnlyDefault
+                                  default: *id002
+                              updated_at:
+                                type: string
+                                format: date-time
+                                readOnly: true
+                            required:
+                              - thumbnail
+                              - url
+                          readOnly: true
+                        name:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - name
+                        - thumbnail
+          description: ""
+    post:
+      operationId: createGenre
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - thumbnail
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+  /api/v1/genres/{id}/:
+    get:
+      operationId: retrieveGenre
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this genre.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    put:
+      operationId: updateGenre
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this genre.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+              required:
+                - name
+                - thumbnail
+          application/x-www-form-urlencoded:
+            schema: *id009
+          multipart/form-data:
+            schema: *id009
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    patch:
+      operationId: partial_updateGenre
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this genre.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              properties:
+                name:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id010
+          multipart/form-data:
+            schema: *id010
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  tracks:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+                    readOnly: true
+                  name:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - name
+                  - thumbnail
+          description: ""
+    delete:
+      operationId: destroyGenre
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this genre.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: ""
+  /api/v1/tracks/:
+    get:
+      operationId: listTracks
+      description: ""
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 123
+                  next:
+                    type: string
+                    nullable: true
+                  previous:
+                    type: string
+                    nullable: true
+                  results:
+                    type: array
+                    items:
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                          readOnly: true
+                        user:
+                          type: string
+                          readOnly: true
+                        album:
+                          type: string
+                          readOnly: true
+                        artist:
+                          type: string
+                          readOnly: true
+                        owner:
+                          type: string
+                          readOnly: true
+                        genre:
+                          type: string
+                          readOnly: true
+                        title:
+                          type: string
+                          maxLength: 200
+                        description:
+                          type: string
+                          maxLength: 200
+                        thumbnail:
+                          type: string
+                          format: binary
+                        url:
+                          type: string
+                          format: binary
+                        created_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                          default:
+                            !!python/object:rest_framework.fields.CreateOnlyDefault
+                            default: *id002
+                        updated_at:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - thumbnail
+                        - url
+          description: ""
+    post:
+      operationId: createTrack
+      description: ""
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              properties:
+                title:
+                  type: string
+                  maxLength: 200
+                description:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+                url:
+                  type: string
+                  format: binary
+              required:
+                - thumbnail
+                - url
+          application/x-www-form-urlencoded:
+            schema: *id011
+          multipart/form-data:
+            schema: *id011
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  album:
+                    type: string
+                    readOnly: true
+                  artist:
+                    type: string
+                    readOnly: true
+                  owner:
+                    type: string
+                    readOnly: true
+                  genre:
+                    type: string
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 200
+                  description:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    default:
+                      !!python/object:rest_framework.fields.CreateOnlyDefault
+                      default: *id002
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - thumbnail
+                  - url
+          description: ""
+  /api/v1/tracks/{id}/:
+    get:
+      operationId: retrieveTrack
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this track.
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  album:
+                    type: string
+                    readOnly: true
+                  artist:
+                    type: string
+                    readOnly: true
+                  owner:
+                    type: string
+                    readOnly: true
+                  genre:
+                    type: string
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 200
+                  description:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    default:
+                      !!python/object:rest_framework.fields.CreateOnlyDefault
+                      default: *id002
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - thumbnail
+                  - url
+          description: ""
+    put:
+      operationId: updateTrack
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this track.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              properties:
+                title:
+                  type: string
+                  maxLength: 200
+                description:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+                url:
+                  type: string
+                  format: binary
+              required:
+                - thumbnail
+                - url
+          application/x-www-form-urlencoded:
+            schema: *id012
+          multipart/form-data:
+            schema: *id012
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  album:
+                    type: string
+                    readOnly: true
+                  artist:
+                    type: string
+                    readOnly: true
+                  owner:
+                    type: string
+                    readOnly: true
+                  genre:
+                    type: string
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 200
+                  description:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    default:
+                      !!python/object:rest_framework.fields.CreateOnlyDefault
+                      default: *id002
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - thumbnail
+                  - url
+          description: ""
+    patch:
+      operationId: partial_updateTrack
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this track.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              properties:
+                title:
+                  type: string
+                  maxLength: 200
+                description:
+                  type: string
+                  maxLength: 200
+                thumbnail:
+                  type: string
+                  format: binary
+                url:
+                  type: string
+                  format: binary
+          application/x-www-form-urlencoded:
+            schema: *id013
+          multipart/form-data:
+            schema: *id013
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                    readOnly: true
+                  user:
+                    type: string
+                    readOnly: true
+                  album:
+                    type: string
+                    readOnly: true
+                  artist:
+                    type: string
+                    readOnly: true
+                  owner:
+                    type: string
+                    readOnly: true
+                  genre:
+                    type: string
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 200
+                  description:
+                    type: string
+                    maxLength: 200
+                  thumbnail:
+                    type: string
+                    format: binary
+                  url:
+                    type: string
+                    format: binary
+                  created_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                    default:
+                      !!python/object:rest_framework.fields.CreateOnlyDefault
+                      default: *id002
+                  updated_at:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - thumbnail
+                  - url
+          description: ""
+    delete:
+      operationId: destroyTrack
+      description: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: A UUID string identifying this track.
+          schema:
+            type: string
+      responses:
+        "204":
+          description: ""
