@@ -9,10 +9,7 @@ class TestTemplate(TemplateView):
 
 urlpatterns = [
     path('', TestTemplate.as_view()),
-    path('rest-auth/', include('rest_auth.urls')),
-    path('rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('api-auth/', include('rest_framework.urls')),
-    path('users/', include('users.urls')),
+    path('', include('users.urls')),
     path('', include('artist.urls')),
     path('', include('album.urls')),
     path('', include('genre.urls')),
