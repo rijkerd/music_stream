@@ -22,6 +22,7 @@ gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
 python-decouple = "*"
+psycopg2-binary = "*"
 boto3 = "*"
 djoser = "*"
 
