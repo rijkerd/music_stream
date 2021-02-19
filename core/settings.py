@@ -202,6 +202,8 @@ AWS_PUBLIC_MEDIA_LOCATION = 'media/public'
 # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 DEFAULT_FILE_STORAGE = 'core.storage_backends.PublicMediaStorage'
 
+STATIC_LOCATION = 'static'
+
 if DEBUG is False:
 
     DATABASES['default'] = dj_database_url.config(
