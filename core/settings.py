@@ -56,12 +56,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -147,9 +147,9 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [str(BASE_DIR / "static")]
 STATIC_ROOT = str(BASE_DIR / "static_root")
-MEDIA_ROOT = str(BASE_DIR / "media")
+# MEDIA_ROOT = str(BASE_DIR / "media")
 # MEDIA_ROOT = os.path.join(os., 'media')
-MEDIA_URL = "/media/"
+# MEDIA_URL = "/media/"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SITE_ID = 1
@@ -192,9 +192,9 @@ AWS_DEFAULT_ACL = None
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3-{AWS_REGION}.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-PUBLIC_MEDIA_LOCATION = 'media/public'
+# PUBLIC_MEDIA_LOCATION = 'media/public'
 # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'core.storage_backends.PublicMediaStorage'
+# DEFAULT_FILE_STORAGE = 'core.storage_backends.PublicMediaStorage'
 
 AWS_PRIVATE_MEDIA_LOCATION = 'media/private'
 PRIVATE_FILE_STORAGE = 'core.storage_backends.PrivateMediaStorage'
