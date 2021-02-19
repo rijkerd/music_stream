@@ -24,7 +24,7 @@ class Track(models.Model):
     album = models.ForeignKey(
         Album, related_name='tracks', on_delete=models.CASCADE)
     thumbnail = models.FileField(storage=PublicMediaStorage(), blank=False)
-    url = models.FileField(upload_to='music')
+    url = models.FileField(storage=PrivateMediaStorage(),blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
