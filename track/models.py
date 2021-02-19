@@ -4,7 +4,7 @@ from users.models import User
 from artist.models import Artist
 from genre.models import Genre
 from album.models import Album
-from core.storage_backends import PublicMediaStorage
+from core.storage_backends import PublicMediaStorage,PrivateMediaStorage
 
 
 class Track(models.Model):
