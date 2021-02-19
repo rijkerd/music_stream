@@ -4,6 +4,7 @@ from users.models import User
 from artist.models import Artist
 from genre.models import Genre
 from album.models import Album
+from core.storage_backends import PublicMediaStorage
 
 
 class Track(models.Model):
@@ -22,7 +23,7 @@ class Track(models.Model):
         Genre, related_name='tracks', on_delete=models.PROTECT)
     album = models.ForeignKey(
         Album, related_name='tracks', on_delete=models.CASCADE)
-    thumbnail = models.ImageField(upload_to='tracks/images')
+    thumbnail = models.FileField(storage=PublicMediaStorage(), blank=False)
     url = models.FileField(upload_to='music')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
