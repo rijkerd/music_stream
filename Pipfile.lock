@@ -86,6 +86,7 @@
                 "sha256:fd78e5fee591709f32ef6edb9a015b4aa1a5022598e36227500c8f4e02328d9c"
             ],
             "version": "==1.14.5"
+
         },
         "chardet": {
             "hashes": [
@@ -124,6 +125,7 @@
                 "sha256:fec7fb46b10da10d9e1d078d1ff8ed9e05ae14f431fdbd11145edd0550b9a964"
             ],
             "version": "==3.4.6"
+
         },
         "defusedxml": {
             "hashes": [
@@ -503,6 +505,7 @@
             ],
             "markers": "python_version != '3.4'",
             "version": "==1.26.4"
+
         },
         "uuid": {
             "hashes": [
@@ -533,7 +536,9 @@
                 "sha256:87ae7f2398b8a0ae5638ddecf9987f081b756e0e9fc071aeebdca525671fc4dc",
                 "sha256:b31c92f545517dcc452f284bc9c044050862fbe6d93d2b3de4a215a6b384bf0d"
             ],
+
             "version": "==2.5"
+
         },
         "autopep8": {
             "hashes": [
@@ -593,6 +598,7 @@
                 "sha256:fa7fb7973c622b9e725bee1db569d2c2ee64d2f9a089201c5e8185d482c7352d"
             ],
             "version": "==1.5.2"
+
         },
         "mccabe": {
             "hashes": [
@@ -637,6 +643,7 @@
                 "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"
             ],
             "version": "==2021.1"
+
         },
         "sqlparse": {
             "hashes": [
