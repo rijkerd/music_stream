@@ -1,0 +1,15 @@
+django
+djangorestframework
+django-environ
+django-storages
+uuid
+pyyaml
+uritemplate
+pillow
+gunicorn
+whitenoise
+dj-database-url
+python-decouple
+psycopg2
+boto3
+djoser
